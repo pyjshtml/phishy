@@ -1,0 +1,24 @@
+{
+  "name": "phishy",
+  "version": "1.0.0",
+  "description": "a facebook phishing server",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pyjshtml/phishy.git"
+  },
+  "author": "Jack Dunfey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pyjshtml/phishy/issues"
+  },
+  "homepage": "https://github.com/pyjshtml/phishy#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}

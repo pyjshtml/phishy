@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="shortcut icon" href="https://static.xx.fbcdn.net/rsrc.php/yo/r/iRmz9lCMBD2.ico" /> -->
+    <!-- Bootstrap -->
+    <script src="/static/bootstrap/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <title>Not Facebook</title>
+    <style>
+        video{
+            border: 0px;
+            outline: none;
+        }
+        video::-webkit-media-controls-fullscreen-button{
+            display: none !important;
+        }
+        body, html{
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            background-color: #e9ebee;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            /* Set the fixed height of the footer here */
+            height: 50px;
+            line-height: 50px; /* Vertically center the text there */
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center display-2 bg-dark text-white" style="font-weight: bold;">
+        This is <em>NOT</em> Facebook 
+    </h1>
+    <div class="container-fluid m-0 pt-2">
+        <h3>What is Phishing?</h3>
+        <div class="row">
+            <div class="col-md-7">
+                <blockquote class="blockquote ml-3">
+                    <p class="mb-0">Phishing is the fraudulent attempt to obtain sensitive information or data, such as usernames, passwords and credit card details or other sensitive details, by impersonating oneself as a trustworthy entity in a digital communication. Phishing often directs users to enter personal information at a fake website which matches the look and feel of the legitimate site. For example, this website emulates Facebook's user interface.</p>
+                    <footer class="blockquote-footer" style="visibility: hidden;" aria-hidden><cite>padding</cite></footer>
+                </blockquote>
+            </div>
+            <div class="col-md-5">
+                <video style="float: right; position: relative; top: -10%;" width="533" height="300" poster="/static/images/what_is_phishing.png" controls>
+                    <source src="/static/videos/what_is_phishing.mp4" type="video/mp4" />
+                    Your browser sucks
+                </video>
+            </div>
+        </div>
+        <h3>How can I recognize a phishing attempt?</h3>
+        <div class="row">
+            <div class="col-md-8">
+                <blockquote class="blockquote ml-3">
+                    <p class="mb-0">No legitimate bank or business would send you an email requesting that you re-enter your personal information. Mispellings, poor grammar, and typos are all indicators of a phishing email. If you receive a phishing email, the best thing to do is to just ignore it and mark it as spam.</p>
+                    <footer class="blockquote-footer"><cite title="What is Phishing?">Kaspersky</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+    <footer class="footer p-0">
+        <div class="container">
+            <p class="text-muted text-center m-0">
+                &copy; 2021 No One
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
